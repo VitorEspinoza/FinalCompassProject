@@ -1,0 +1,49 @@
+<div class="flex backgrounds">
+
+  <div class="background-login flex">
+
+    <div>
+      <img class="logo-login" src="../../../assets/Logo-Compasso-Branco.svg" alt="">
+      <p class="explanation"><strong>Olá,</strong><br> Para continuar navegando de forma segura, efetue o login na rede.</p>
+
+
+    <div class="form" >
+      <h1>Login</h1>
+
+        <form novalidate (ngSubmit)="login()" [formGroup]="loginForm" style="margin-bottom: 10px;">
+          <div class="form-group">
+            <div class="flex input-icon" style="align-items: center; position: relative;">
+            <input (input)="authFail = false" [class.input-auth-fail]="authFail" [(ngModel)]="emailValue" matInput placeholder="Usuário" class="form-control" id="email" type="text" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email }">
+            <img src="../../../assets/user-icon.svg"  [class.out-input]="emailValue == ''" [class.in-input] ="emailValue != '' && emailValue != ' '"  alt="">
+          </div>
+            <span class="text-danger" *ngIf="displayMessage.email">
+            <p [innerHTML]="displayMessage.email"></p>
+          </span>
+          </div>
+
+          <div class="form-group">
+            <div class="flex input-icon" style="align-items: center;  position: relative;">
+            <input (input)="authFail = false" [class.input-auth-fail]="authFail" [(ngModel)]="passwordValue" placeholder="Senha" class="form-control" id="password" type="password" formControlName="password" [ngClass]="{'is-invalid': displayMessage.password }">
+            <img src="../../../assets/password-icon.svg" alt=""  [class.out-input]="passwordValue == ''" [class.in-input] ="passwordValue != '' && passwordValue != ' '">
+          </div>
+            <span class="text-danger" *ngIf="displayMessage.password">
+            <p [innerHTML]="displayMessage.password"></p>
+            </span>
+          </div>
+
+        </form>
+        <p *ngIf="authFail == true" class="text-danger" style="margin-top: 28px;">Ops, usuário ou senha inválidos! <br>Tente novamente</p>
+    </div>
+    <div class="form-group">
+      <button class="Mark" id="Login" [disabled]="!loginForm.valid" type="submit" (click)="login()" [ngClass]="{'auth-fail-button': authFail == true}"> Continuar</button>
+    </div>
+    <a [routerLink]="['/account/register']">Não possui uma conta? <strong>Cadastre-se</strong></a>
+  </div>
+  </div>
+
+  <div class="background-notebook">
+    <img class="logo" src="../../../assets/Logo-Compasso-Branco.svg" alt="">
+  </div>
+
+</div>
+

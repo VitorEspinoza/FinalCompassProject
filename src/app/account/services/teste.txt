@@ -1,0 +1,105 @@
+import { TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { User } from './../models/user';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AccountService } from './account.service';
+import { Observable, Observer } from 'rxjs';
+
+function createResponse(body: any) {
+  return Observable.create((observer: Observer<any>) => {
+      observer.next(body);
+  });
+}
+describe('AccountService', () => {
+  let service: AccountService;
+  let fireAuth: AngularFireAuth;
+  beforeEach(() => {
+    const activatedRouteStub = () => ({ snapshot: { queryParams: {} } });
+    const routerStub = () => ({ navigate: (array: any) => ({}) });
+    const angularFireAuthStub = () => ({
+      signInWithEmailAndPassword: (email: any, password: any) => ({ then: () => ({}) }),
+      signOut: () => ({ then: () => ({}) }),
+      createUserWithEmailAndPassword: (email: any, password: any) => ({
+        then: () => ({})
+      })
+    });
+    const bed = TestBed.configureTestingModule({
+      providers: [
+        AccountService,
+        { provide: ActivatedRoute, useFactory: activatedRouteStub },
+        { provide: Router, useFactory: routerStub },
+        {provide: AngularFireAuth, useClass: MockFireAuth  }
+      ]
+    });
+    service = bed.get(AccountService);
+    fireAuth = bed.get(AngularFireAuth);
+  });
+
+  it('can load instance', () => {
+    expect(service).toBeTruthy();
+  });
+
+  describe('login', () => {
+    it('makes expected calls', () => {
+      const userStub: User = <any>{};
+      const angularFireAuthStub: AngularFireAuth = TestBed.inject(
+        AngularFireAuth
+      );
+      spyOn(
+        angularFireAuthStub,
+        'signInWithEmailAndPassword'
+      ).and.callThrough();
+      service.login(userStub);
+      expect(angularFireAuthStub.signInWithEmailAndPassword).toHaveBeenCalled();
+      Promise.resolve(angularFireAuthStub.signInWithEmailAndPassword).then(() => {
+        expect(service.LocalStorage.saveTokenUser).toHaveBeenCalled();
+      })
+
+    });
+  });
+
+  describe('register', () => {
+    it('makes expected calls', () => {
+      const userStub: User = <any>{};
+      const angularFireAuthStub: AngularFireAuth = TestBed.inject(
+        AngularFireAuth
+      );
+      spyOn(
+        angularFireAuthStub,
+        'createUserWithEmailAndPassword'
+      ).and.callThrough();
+      service.register(userStub);
+      expect(
+        angularFireAuthStub.createUserWithEmailAndPassword
+      ).toHaveBeenCalled();
+        expect(service.LocalStorage.saveTokenUser).toHaveBeenCalled();
+      })
+
+
+    });
+  });
+
+  describe('logout', () => {
+    it('makes expected calls', () => {
+      const routerStub: Router = TestBed.inject(Router);
+      const angularFireAuthStub: AngularFireAuth = TestBed.inject(
+        AngularFireAuth
+      );
+      spyOn(routerStub, 'navigate').and.callThrough();
+      spyOn(angularFireAuthStub, 'signOut').and.callThrough();
+      service.logout();
+      expect(angularFireAuthStub.signOut).toHaveBeenCalled();
+      Promise.resolve(angularFireAuthStub.signOut).then(() => {
+        expect(routerStub.navigate).toHaveBeenCalled();
+        expect(service.LocalStorage.clearUserLocalData).toHaveBeenCalled();
+      });
+    });
+  });
+  class MockFireAuth {
+    get() {
+      return createResponse({ fireauth: 'mock'});
+    }
+  }
+
+});

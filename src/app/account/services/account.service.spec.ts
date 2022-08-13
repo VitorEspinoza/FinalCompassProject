@@ -1,0 +1,90 @@
+import { TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { User } from './../models/user';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AccountService } from './account.service';
+
+describe('AccountService', () => {
+  let service: AccountService;
+
+  beforeEach(() => {
+    const routerStub = () => ({ navigate: (array: any) => ({}) });
+    const angularFireAuthStub = () => ({
+      signInWithEmailAndPassword: (email: any, password: any) => ({ then: () => ({}) }),
+      signOut: () => ({ then: () => ({}) }),
+      createUserWithEmailAndPassword: (email: any, password: any) => ({
+        then: () => ({})
+      })
+    });
+    TestBed.configureTestingModule({
+      providers: [
+        AccountService,
+        { provide: Router, useFactory: routerStub },
+        { provide: AngularFireAuth, useFactory: angularFireAuthStub }
+      ]
+    });
+    service = TestBed.inject(AccountService);
+  });
+
+  it('can load instance', () => {
+    expect(service).toBeTruthy();
+  });
+
+  describe('login', fakeAsync(() => {
+    it('makes expected calls', () => {
+      const userStub: User = <any>{};
+      const angularFireAuthStub: AngularFireAuth = TestBed.inject(
+        AngularFireAuth
+      );
+      let response = new Promise((resolve, reject) => {
+        const retorno = {
+          success: {
+            codigo: 'teste',
+            mensagem: 'retorno',
+          },
+        };
+
+        return resolve(retorno);
+      });
+      spyOn	(service, 'login').and.returnValue(response);
+      spyOn(
+        angularFireAuthStub,
+        'signInWithEmailAndPassword'
+      ).and.callThrough();
+      service.login(userStub);
+      flush(10);
+      expect(angularFireAuthStub.signInWithEmailAndPassword).toHaveBeenCalled();
+    });
+  }));
+
+  describe('register', () => {
+    it('makes expected calls', () => {
+      const userStub: User = <any>{};
+      const angularFireAuthStub: AngularFireAuth = TestBed.inject(
+        AngularFireAuth
+      );
+      spyOn(
+        angularFireAuthStub,
+        'createUserWithEmailAndPassword'
+      ).and.callThrough();
+      service.register(userStub);
+      expect(
+        angularFireAuthStub.createUserWithEmailAndPassword
+      ).toHaveBeenCalled();
+    });
+  });
+
+  describe('logout', () => {
+    it('makes expected calls', async () => {
+      const routerStub: Router = TestBed.inject(Router);
+      const angularFireAuthStub: AngularFireAuth = TestBed.inject(
+        AngularFireAuth
+      );
+      spyOn(routerStub, 'navigate').and.callThrough();
+      spyOn(angularFireAuthStub, 'signOut').and.callThrough();
+      service.logout();
+      expect(routerStub.navigate).toHaveBeenCalled();
+      expect(angularFireAuthStub.signOut).toHaveBeenCalled();
+    });
+  });
+});

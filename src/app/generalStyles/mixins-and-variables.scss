@@ -1,0 +1,34 @@
+
+$primary-color: #C12D18;
+
+@mixin responsive($dispositive) {
+  @if $dispositive == monitor {
+    @media only screen and (min-width: #{$monitor}){
+      @content;
+    }
+  }
+  @else if $dispositive == laptop {
+    @media only screen and (min-width: #{$laptop}) and (max-width: #{$monitor - 1}){
+      @content;
+    }
+  }
+  @else if $dispositive == tablet {
+    @media only screen and (min-width: #{$tablet}) and (max-width: #{$laptop - 1}){
+      @content;
+    }
+  } @else if $dispositive == mobileL {
+    @media only screen and (min-width: #{$mobileL}) and (max-width: #{$tablet - 1}) {
+      @content;
+    }
+  } @else if $dispositive == mobileS {
+    @media only screen and (max-width: #{$mobileL - 1}) {
+      @content;
+    }
+  }
+}
+$monitor: 1800px;
+$laptop: 1024px;
+$tablet: 768px;
+$mobileL: 425px;
+$mobileS: 320px
+

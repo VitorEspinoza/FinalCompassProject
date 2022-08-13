@@ -1,0 +1,232 @@
+@import '../../generalStyles/mixins-and-variables.scss';
+
+.backgrounds {
+  width: 100%;
+  height: 100%;
+
+  & > div {
+    height: 100%;
+  }
+
+
+}
+
+.background-login {
+  background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+  color: white;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  @include responsive(mobileL) {
+    width: 100% !important;
+  }
+  @include responsive(mobileS) {
+    width: 100% !important;
+  }
+
+
+  .logo-login {
+    @include responsive (monitor) {
+      display: none;
+    }
+    @include responsive (tablet) {
+      display: none;
+    }
+
+    @include responsive (laptop) {
+      display: none;
+    }
+
+    @include responsive(mobileS)
+    {
+      max-width: 270px !important;
+      margin-bottom: 20px;
+    }
+
+    @include responsive(mobileL)
+    {
+      width: 330px;
+      margin-bottom: 30px;
+    }
+  }
+  .explanation {
+      strong {
+        font-size: 60px;
+        font-weight: 400;
+      }
+      max-width: 300px;
+      @include responsive(mobileS) {
+        max-width: 270px;
+      }
+      font-size: 16px;
+    }
+
+
+    margin-bottom: 100px;
+
+.form {
+  h1 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: 100px;
+    margin-bottom: 35px;
+    @include responsive(mobileS) {
+      margin-top: 50px !important;
+    }
+
+    @include responsive(mobileL)
+    {
+      margin-top: 70px !important;
+    }
+  }
+
+.form-group + .form-group {
+  margin-top: 35px;
+}
+
+ input {
+  color: white;
+  background: none;
+  outline: none;
+  box-sizing: border-box;
+  width: 379px;
+  @include responsive(tablet) {
+    width: 320px;
+  }
+
+  @include responsive(mobileL) {
+    width: 320px;
+  }
+
+  @include responsive(mobileS) {
+    width: 270px;
+  }
+  height: 60px;
+  border: 1px solid;
+  border-radius: 50px;
+  padding: 20px;
+  margin-right: 20px;
+  @include responsive(mobileS) {
+    margin-right: 0px;
+  }
+  &::placeholder {
+    color: white;
+    font-family: Mark-Pro;
+  }
+
+ }
+ .out-input {
+  transition: 0.5s;
+  position: absolute;
+  right: -20px;
+
+  @include responsive(mobileS) {
+   right: 30px;
+  }
+
+}
+ .in-input {
+  transform: translateX(-40px);
+  @include responsive(mobileS) {
+    transform: translateX(0);
+    right: 30px;
+   }
+  position: absolute;
+  transition: 0.5s;
+  right: 0px;
+}
+
+  .text-danger {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #E9B425;
+
+    p {
+      margin-top: 10px;
+    }
+
+  }
+
+  margin-bottom: 28px;
+}
+
+button {
+box-sizing: border-box;
+color: white;
+font-weight: 700;
+font-size: 18px;
+width: 379px;
+margin-bottom: 15px;
+@include responsive(tablet)
+{
+  width: 320px;
+}
+
+@include responsive(mobileL) {
+  width: 320px;
+}
+
+@include responsive(mobileS) {
+  width: 270px;
+}
+height: 67px;
+background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+border-radius: 50px;
+border: none;
+margin-top: 50px;
+
+cursor: pointer;
+
+&:disabled {
+  cursor: default;
+}
+
+}
+
+.auth-fail-button {
+  margin-top: 47px !important;
+}
+
+}
+
+.background-notebook {
+  background: url('../../../assets/notebook-background.jpg') no-repeat center;
+  display: none;
+  @include responsive(tablet) {
+    display: block;
+    width: 50%;
+  }
+  @include responsive(laptop) {
+    display: block;
+    width: 50%;
+  }
+  @include responsive(monitor) {
+    display: block;
+    width: 50%;
+  }
+}
+
+
+.logo {
+  margin: auto;
+  margin-top: 35px;
+}
+
+.input-auth-fail, .is-invalid {
+  border-color:#E9B425 !important;
+}
+
+a {
+  color: #E9B425;
+  transition: .3s;
+  strong {
+    text-decoration: underline;
+  }
+  &:hover {
+    color: black;
+    transition: .3s;
+  }
+}
