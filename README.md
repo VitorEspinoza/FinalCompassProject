@@ -10,7 +10,8 @@
 
 <p align="center"> This project was generated with <a href="https://github.com/angular/angular-cli"> Angular CLI </a>version 13.0.4.</p> 
 
-<p align="center">Final project of the angular stage of the Compass UOL. Simple web program made using angular, docker and firebase authentication, aiming primarily at the effectiveness in applying the main angular concepts, as well as a good application of them. </p>
+<p align="center">Final project of the angular Internship
+ at <a href="https://compass.uol/en/home/">Compass UOL <a>. Simple web program made using <a href="https://angular.io/">Angular</a>, <a href="https://www.docker.com/">docker</a> and <a href="https://firebase.google.com/docs/auth">Firebase Authentication</a>, aiming primarily at the effectiveness in applying the main angular concepts, as well as a good application of them. </p>
 
 ## Development server
 
