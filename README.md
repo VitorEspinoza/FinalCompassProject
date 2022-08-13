@@ -13,17 +13,24 @@
 <p align="center">Final project of the angular Internship
  at <a href="https://compass.uol/en/home/">Compass UOL <a>. Simple web program made using <a href="https://angular.io/">Angular</a>, <a href="https://www.docker.com/">docker</a> and <a href="https://firebase.google.com/docs/auth">Firebase Authentication</a>, aiming primarily at the effectiveness in applying the main angular concepts, as well as a good application of them. </p>
 
-## Development server
+<h4 align="center"> 
+	🚧  Developing...  🚧
+</h4>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Required packages
+- [Node 17.x](https://nodejs.org/en/download/)
+- [Angular 13.x](https://angular.io/guide/setup-local)
 
-## Code scaffolding
+## Dependency packages install
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
+After cloning the repository or downloading the project zip, in the referring folder run the following command in the terminal: `npm install`. Wait for the upload and follow the other two topics below.
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Running unit tests
 
