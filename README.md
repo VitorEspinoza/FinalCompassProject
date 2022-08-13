@@ -1,9 +1,14 @@
+<div align="center">
+  <a href="https://www.docker.com/" title="Go to Docker homepage"><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"></a>
+  <a href="https://angular.io/" title="Go to Angular homepage"><img src="https://th.bing.com/th/id/OIP.P9JuiLoXs-D1zibItvJvDwHaHa?pid=ImgDet&rs=1"></a>
+  <a href="https://jasmine.github.io/" title="Go to Jasmine homepage"><img src="https://img.shields.io/badge/jasmine-%238A4182.svg?style=for-the-badge&logo=jasmine&logoColor=white"></a>
+</div>
+
 <h1 align="center"> Final Compass Project </h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+<p align="center"> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.</p> 
 
-<p align="center">Final project of the angular stage of the Uol Compass. Simple web program made using angular, docker and firebase authentication, aiming primarily at the effectiveness in applying the main angular concepts, as well as a good application of them./p>
-## Development server
+<p align="center">Final project of the angular stage of the Compass UOL. Simple web program made using angular, docker and firebase authentication, aiming primarily at the effectiveness in applying the main angular concepts, as well as a good application of them. </p>
 
 ## Development server
 
