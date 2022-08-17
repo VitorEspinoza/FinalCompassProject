@@ -8,11 +8,11 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install
 COPY . /app
-RUN $(npm bin)/ng build --prod
+RUN $(npm bin)/ng build --configuration development
 
 ### Estágio 2 - Subir o source para o servidor NGINX com a app Angular###
 FROM nginx
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=ng-builder /app/dist/compass-project /usr/share/nginx/html
+COPY --from=ng-builder /app/dist/CompassProject /usr/share/nginx/html
 
 EXPOSE 80
