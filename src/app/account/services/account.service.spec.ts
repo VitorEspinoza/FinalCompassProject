@@ -30,7 +30,7 @@ describe('AccountService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('login', fakeAsync(() => {
+  describe('login', () =>
     it('makes expected calls', () => {
       const userStub: User = <any>{};
       const angularFireAuthStub: AngularFireAuth = TestBed.inject(
@@ -54,8 +54,8 @@ describe('AccountService', () => {
       service.login(userStub);
       flush(10);
       expect(angularFireAuthStub.signInWithEmailAndPassword).toHaveBeenCalled();
-    });
-  }));
+    })
+  );
 
   describe('register', () => {
     it('makes expected calls', () => {

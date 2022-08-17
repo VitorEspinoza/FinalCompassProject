@@ -1,4 +1,4 @@
-import { LocalStorageUtils } from './../../utilities/localstorage';
+import { LocalStorageUtils } from '../../utilities/localstorage';
 import { TestBed } from '@angular/core/testing';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
