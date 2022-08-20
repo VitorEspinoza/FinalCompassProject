@@ -13,13 +13,20 @@
 <p align="center">Final project of the angular Internship
  at <a href="https://compass.uol/en/home/">Compass UOL <a>. Simple web program made using <a href="https://angular.io/">Angular</a>, <a href="https://www.docker.com/">docker</a> and <a href="https://firebase.google.com/docs/auth">Firebase Authentication</a>, aiming primarily at the effectiveness in applying the main angular concepts, as well as a good application of them. </p>
 
-<h4 align="center"> 
-	🚧  Developing...  🚧
-</h4>
+> Status: Developing ⚠️
 
 # Required packages
-- [Node 17.x](https://nodejs.org/en/download/)
-- [Angular 13.x](https://angular.io/guide/setup-local)
+
+<table>
+  <tr>
+    <td>[Node](https://nodejs.org/en/download/)</td>
+    <td>[Angular](https://angular.io/guide/setup-local)</td>
+  </tr>
+  <tr>
+    <td>17.*</td>
+    <td>13.*</td>
+  </tr>
+</table>
 
 ## Dependency packages install
 
