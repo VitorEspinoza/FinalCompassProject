@@ -19,8 +19,8 @@
 
 <table>
   <tr>
-    <td>[Node](https://nodejs.org/en/download/)</td>
-    <td>[Angular](https://angular.io/guide/setup-local)</td>
+    <td><a href="https://nodejs.org/en/download/">Node</a></td>
+    <td><a href="https://angular.io/guide/setup-local">Angular</a></td>
   </tr>
   <tr>
     <td>17.*</td>
