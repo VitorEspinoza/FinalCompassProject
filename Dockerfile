@@ -11,8 +11,9 @@ COPY . /app
 RUN $(npm bin)/ng build --configuration development
 
 ### Estágio 2 - Subir o source para o servidor NGINX com a app Angular###
+
 FROM nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=ng-builder /app/dist/CompassProject /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 8080
