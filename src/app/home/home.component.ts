@@ -19,14 +19,7 @@ export class HomeComponent implements OnInit {
   localStorage: LocalStorageUtils = new LocalStorageUtils;
   returnUrl!: string;
   constructor(private weatherService: WeatherService, private accountService: AccountService, private fireAuth: AngularFireAuth, router: Router) {
-    setInterval(() => {
-
-     this.refreshTime();
-     if(this.timer != 0)
-      this.timer--;
-     else
-      accountService.logout();
-    }, 1000)
+    this.uptateTime();
   }
 
   ngOnInit(): void {
@@ -47,17 +40,20 @@ export class HomeComponent implements OnInit {
       }
       );
     }
-    else {
-      alert('navegador não suporta geolozalicação');
-    }
-
   }
 
   logout() {
     this.accountService.logout();
   }
 
-  refreshTime (){
+  uptateTime () {
+    setInterval(() => {
+
       this.actualDateTime = Date.now();
+      if(this.timer != 0)
+       this.timer--;
+      else
+       this.accountService.logout();
+     }, 1000)
   }
 }
