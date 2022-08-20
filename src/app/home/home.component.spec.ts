@@ -27,10 +27,14 @@ describe('HomeComponent', () => {
         { provide: WeatherService, useFactory: weatherServiceStub }
       ]
     });
-    spyOn(HomeComponent.prototype, 'refreshTime');
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
   });
+
+  afterEach(() => {
+    jasmine.clock().uninstall();
+  });
+
 
   it('can load instance', () => {
     expect(component).toBeTruthy();
@@ -40,25 +44,24 @@ describe('HomeComponent', () => {
     expect(component.timer).toEqual(600);
   });
 
-  describe('constructor', () => {
-    it('makes expected calls', () => {
-      expect(HomeComponent.prototype.refreshTime).toHaveBeenCalled();
-    });
-  });
-
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
       const weatherServiceStub: WeatherService = fixture.debugElement.injector.get(
         WeatherService
       );
-      spyOn(navigator.geolocation, 'getCurrentPosition');
-      if (navigator.geolocation) {
-        expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalled();
-      }
       spyOn(weatherServiceStub, 'getWeather').and.callThrough();
+
       component.ngOnInit();
+
       expect(weatherServiceStub.getWeather).toHaveBeenCalled();
     });
+
+    it('should return weather if user allow locallocation', () => {
+      var test!: Geolocation;
+      spyOnProperty(navigator, 'geolocation').and.returnValue(test);
+
+      component.ngOnInit();
+    })
   });
 
   describe('logout', () => {
@@ -70,6 +73,17 @@ describe('HomeComponent', () => {
       component.logout();
       expect(accountServiceStub.logout).toHaveBeenCalled();
     });
+  })
+
+  describe('updateTime', () => {
+    it('should update timer', () => {
+      let logoutSpy = spyOn(component, 'logout');
+      jasmine.clock().install();
+      component.updateTime();
+      jasmine.clock().tick(610000);
+      expect(logoutSpy).toHaveBeenCalled();
+    });
   });
 
 });
+

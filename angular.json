@@ -108,7 +108,10 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "codeCoverage": true
+            "codeCoverage": true,
+            "codeCoverageExclude": ["src/app/base-components/form-base.component.ts",
+          "src/app/utilities/generic-form-validation.ts",
+        "src/app/utilities/localstorage.ts"]
           }
         },
         "e2e": {

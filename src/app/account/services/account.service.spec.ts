@@ -30,32 +30,20 @@ describe('AccountService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('login', () =>
+  describe('login', () => {
     it('makes expected calls', () => {
       const userStub: User = <any>{};
       const angularFireAuthStub: AngularFireAuth = TestBed.inject(
         AngularFireAuth
       );
-      let response = new Promise((resolve, reject) => {
-        const retorno = {
-          success: {
-            codigo: 'teste',
-            mensagem: 'retorno',
-          },
-        };
-
-        return resolve(retorno);
-      });
-      spyOn	(service, 'login').and.returnValue(response);
       spyOn(
         angularFireAuthStub,
         'signInWithEmailAndPassword'
       ).and.callThrough();
       service.login(userStub);
-      flush(10);
       expect(angularFireAuthStub.signInWithEmailAndPassword).toHaveBeenCalled();
-    })
-  );
+    });
+  });
 
   describe('register', () => {
     it('makes expected calls', () => {

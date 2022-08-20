@@ -76,24 +76,51 @@ describe('LoginComponent', () => {
 
 
   describe('login', () => {
-    it('makes expected calls', () => {
+    // it('makes expected calls', () => {
+    //   const ngxSpinnerServiceStub: NgxSpinnerService = fixture.debugElement.injector.get(
+    //     NgxSpinnerService
+    //   );
+    //   const accountServiceStub: AccountService = fixture.debugElement.injector.get(
+    //     AccountService
+    //   );
+    //   spyOn(component, 'loadSucces').and.callThrough();
+    //   spyOn(component, 'loadFail').and.callThrough();
+    //   spyOn(ngxSpinnerServiceStub, 'show').and.callThrough();
+    //   spyOn(accountServiceStub, 'login').and.callThrough();
+    //   component.login();
+    //   expect(component.loadSucces).toHaveBeenCalled();
+    //   expect(component.loadFail).toHaveBeenCalled();
+    //   expect(ngxSpinnerServiceStub.show).toHaveBeenCalled();
+    //   expect(accountServiceStub.login).toHaveBeenCalled();
+    // });
+
+    it('should call spinner', () => {
       const ngxSpinnerServiceStub: NgxSpinnerService = fixture.debugElement.injector.get(
-        NgxSpinnerService
-      );
-      const accountServiceStub: AccountService = fixture.debugElement.injector.get(
-        AccountService
-      );
-      spyOn(component, 'loadSucces').and.callThrough();
-      spyOn(component, 'loadFail').and.callThrough();
+            NgxSpinnerService
+          );
       spyOn(ngxSpinnerServiceStub, 'show').and.callThrough();
-      spyOn(accountServiceStub, 'login').and.callThrough();
       component.login();
-      expect(component.loadSucces).toHaveBeenCalled();
-      expect(component.loadFail).toHaveBeenCalled();
       expect(ngxSpinnerServiceStub.show).toHaveBeenCalled();
-      expect(accountServiceStub.login).toHaveBeenCalled();
-    });
   });
+
+    it('should log in the user if the form is valid', () => {
+      component.ngOnInit();
+
+      component.loginForm.setValue({
+        email: 'emailteste@gmail.com',
+        password: 'Senha@Teste1'
+      });
+      component.loginForm.markAsDirty();
+      component.login();
+
+      let userTest!: User;
+      userTest.email = "emailteste@gmail.com";
+      userTest.password = "Senha@Teste1";
+      expect(component.user).toBe(userTest);
+
+
+    });
+});
 
   describe('loadSucces', () => {
     it('makes expected calls', () => {

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RegisterComponent } from '../register/register.component';
 import { AccountGuard } from './account.guard';
 
+
 describe('AccountGuard', () => {
   let service: AccountGuard;
   const localStorageTeste = new LocalStorageUtils;
@@ -34,6 +35,7 @@ describe('AccountGuard', () => {
     it('makes expected calls', () => {
       const routerStub: Router = TestBed.inject(Router);
       spyOn(routerStub, 'navigate').and.callThrough();
+      localStorage.setItem('compassProject.token', 'teste');
       service.canActivate();
       if (service.localStorageUtils.getTokenUser()) {
         expect(routerStub.navigate).toHaveBeenCalled();

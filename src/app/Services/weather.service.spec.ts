@@ -28,12 +28,11 @@ describe('WeatherService', () => {
       service = bed.get(WeatherService);
     });
 
-
   it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Deve retornar clima', () => {
+  it('Should return weather', () => {
     service.getWeather(123,2323).subscribe((result) => {
       expect(result).toEqual({ wheater: 'mock'});
     });

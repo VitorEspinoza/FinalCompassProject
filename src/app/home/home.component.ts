@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   localStorage: LocalStorageUtils = new LocalStorageUtils;
   returnUrl!: string;
   constructor(private weatherService: WeatherService, private accountService: AccountService, private fireAuth: AngularFireAuth, router: Router) {
-    this.uptateTime();
+    this.updateTime();
   }
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     this.accountService.logout();
   }
 
-  uptateTime () {
+  updateTime () {
     setInterval(() => {
 
       this.actualDateTime = Date.now();

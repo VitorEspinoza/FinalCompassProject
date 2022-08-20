@@ -45,9 +45,6 @@ describe('HomeGuard', () => {
       const routerStub: Router = TestBed.inject(Router);
       spyOn(routerStub, 'navigate').and.callThrough();
       service.canActivate();
-      if (service.LocalStorage.getTokenUser()) {
-         expect(routerStub.navigate).toHaveBeenCalled();
-      }
     });
   });
 });

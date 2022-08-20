@@ -15,8 +15,7 @@ export class AccountService {
 
   login(user: User) : Promise<unknown>{
   return this.fireAuth.signInWithEmailAndPassword(user.email, user.password).then((response) => {
-       console.log(response);
-       this.LocalStorage.saveTokenUser(response.user?.uid as string);
+    this.LocalStorage.saveTokenUser(response.user?.uid as string);
     });
   }
 
